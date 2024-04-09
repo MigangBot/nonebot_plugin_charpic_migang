@@ -36,9 +36,9 @@ async def self_adaption_font_of_text(font_filename, default_font_size: int, text
     返回字符画的 width, height
     """
     ttfont = ImageFont.truetype(font_filename, default_font_size)
-    w, h = ttfont.getsize_multiline(text.strip())
+    left, top, right, bottom = ttfont.getbbox(text.strip())
 
-    return ttfont, w, h
+    return ttfont, right - left, bottom - top
 
 
 async def text2img(text: str):
